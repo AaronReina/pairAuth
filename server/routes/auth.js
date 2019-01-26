@@ -13,7 +13,7 @@ let loginPromise = (req, user) => {
   })
 }
 
-router.post("/auth/login", (req, res, next)=>
+router.post("/login", (req, res, next)=>
 
 passport.authenticate("local",(err, theUser , fail)=> {
   if (err) return res.status(500).json({ message: 'Something went wrong' });
@@ -25,19 +25,20 @@ passport.authenticate("local",(err, theUser , fail)=> {
 
 
 
-router.post("/auth/signup", (req, res, next) => {
+router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const campus = req.body.campus;
   const course = req.body.course;
+  
+ 
+
   if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
     return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
       return;
     }
 

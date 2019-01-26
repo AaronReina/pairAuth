@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Input from './components/Input';
+import { Principal } from './components/principal';
+
 
 
 class App extends Component {
   render() {
     return (
-      <div >
-        <Input/>
-        <Input/>
+      <div>
+        <Principal/>
       </div>
     );
   }
