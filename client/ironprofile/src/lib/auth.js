@@ -31,8 +31,17 @@ export class AuthAPI {
         return instance.post('/auth/signup',{username, password, campus, course})
         .then((res) => res.data.user)
         .catch(AuthAPI.errorHandler)
-
     }
+
+    static upload(file){
+        return instance
+        .post("/auth/image", file, {
+          headers: { "Content-Type": "multipart/form-data" }
+        })
+        .then(res => res)
+        .catch(AuthAPI.errorHandler);
+    }
+
     static logout(username, password){
         return instance.get('/auth/logout')
         .then((res) => console.log("Logout"))

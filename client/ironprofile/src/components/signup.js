@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import Input from './Input';
 import { AuthAPI } from "../lib/auth";
+import { connect } from 'react-redux';
+import {  login  } from '../lib/Redux/actions';
+
  
 
-export default class Signup extends Component {
+  export class _Signup extends Component {
 
 
   constructor(){
@@ -19,7 +22,13 @@ export default class Signup extends Component {
   handleSubmit(){
     const {username, password, campus, course} = this.state;
     console.log(username, password, campus, course)
-    AuthAPI.signup( username, password, campus, course).then(e => console.log(`Esto es signup = ${e}`))
+    const {dispatch} = this.props;
+    AuthAPI.signup( username, password, campus, course)
+    .then(user =>{
+      dispatch(login(user))})
+    .catch(e => console.log('catch de handlesubmit'+ e))
+    
+    
   }
 
   handleName(e){
@@ -54,4 +63,7 @@ export default class Signup extends Component {
     );
   }
 }
+
+
+export const Signup = connect(store => store)(_Signup);
 

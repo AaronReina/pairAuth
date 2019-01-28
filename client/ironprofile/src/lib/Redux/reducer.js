@@ -2,6 +2,7 @@ import { AuthAPI } from "../auth";
 
 const initialStore = {
     user: null,
+    image: "",
     messages:[]
 }
 
@@ -31,9 +32,16 @@ export const rootReducer = (store = initialStore, action) => {
                 user: null
             }
         break;
+        case "IMG_UPLOAD":
+            store = {
+                ...store,
+                image: action.image
+            }
+        break;
         default: return store
     }
     // For now, don't handle any actions
     // and just return the store given to us.
     return store
 }
+

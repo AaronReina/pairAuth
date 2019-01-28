@@ -26,3 +26,11 @@ export const clearMessages = () => {
       type: "DELETE_ALL_MESSAGES",
   }
 }
+
+export const imgUpload = (e) => {
+  return {
+      type: "IMG_UPLOAD",
+      image: e.image
+  }
+}
+
